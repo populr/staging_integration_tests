@@ -48,7 +48,10 @@ StagingIntegrationTests::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'welcome#index'
+
+  match "/sign_in" => redirect("https://populrstaging.com/users/sign_in"), :as => :sign_in
+  match "/pops" => redirect("https://app.populrstaging.com/pops"), :as => :pops
 
   # See how all your routes lay out with "rake routes"
 

@@ -13,5 +13,7 @@ capybara-*.html
 /spec/tmp/*
 **.orig
 rerun.txt
+.DS_Store
+spec/.DS_Store
 pickle-email-*.html
 

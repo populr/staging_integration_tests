@@ -24,12 +24,14 @@ end
 group :development, :test, :staging do
   gem 'rspec-rails', '~> 2.0'
   gem 'pry'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver', '~> 2.32.1'
 end
 
 group :test do
   gem 'capybara'
   gem 'launchy'
-  gem 'spork'
+  gem 'spork', '~> 1.0rc'
   gem 'fuubar'
 end
 
