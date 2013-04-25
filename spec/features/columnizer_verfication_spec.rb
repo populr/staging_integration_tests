@@ -20,7 +20,7 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
       sleep 1
 
       ## enter editor
-      visit('https://editor-51780ece851707af64000035.populrstaging.com/____editor____/51780ece851707af64000035#/')
+      visit('https://editor-5179704f85170728c6000004.populrstaging.com/____editor____/5179704f85170728c6000004#/')
       sleep 5
       page.should have_content('Options')
       page.should have_content('Publish')

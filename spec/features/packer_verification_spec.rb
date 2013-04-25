@@ -20,7 +20,7 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
       sleep 1
 
       ## enter editor
-      visit('https://editor-517820ba851707af6400003d.populrstaging.com/____editor____/517820ba851707af6400003d#/')
+      visit('https://editor-51797855851707a78c00001a.populrstaging.com/____editor____/51797855851707a78c00001a#/')
       sleep 5
       page.should have_content('Options')
       page.should have_content('Publish')
@@ -35,7 +35,7 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
       # sleep 1
 
       click_on('Options')
-      fill_in('pop_name', :with => "Nashville Life (packer)" + now)
+      fill_in('pop_name', :with => "Nashville Life (packer) " + now)
       sleep 1
       click_on('Options')
       sleep 2
