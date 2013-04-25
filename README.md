@@ -20,9 +20,9 @@ To pause the test, locate 'save_and_open_page' in the test file and place it as 
 
 '#'  symbol indicates an option that could be added to the test
 
-'##' symbol indicates a description for a block of code for each portion in the test. Do NOT remove these comments.
+'##' symbol indicates a description for a block of code for each portion in the test.
 
-'#*' symbol indicates a 'sleep' option that is waiting for the environment to load, DO NOT CHANGE.
+'#*' symbol indicates a 'sleep' option that is waiting for the environment to load.
 
 
 USER CREDENTIALS
