@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Modify content in existing published Columnizer Pop", :js => true  do
+describe "Visual verfication of assets in a published Columnizer Pop", :js => true  do
 
   context "when viewing a published columnizer pop, the cache must be busted. In order to confirm this," do
     it "it should have a new pop title with the current date and update text in at least one of the assets" do
@@ -25,10 +25,17 @@ describe "Modify content in existing published Columnizer Pop", :js => true  do
       page.should have_content('Options')
       page.should have_content('Publish')
 
+      ## add new asset to pop
+      # click_on('Add Content')
+      # sleep 1
+      # find('.add-embed').click
+      # click_on("I'm Done")
+      # sleep 1
+
       now = DateTime.now.in_time_zone.to_s
 
       click_on('Options')
-      fill_in('pop_name', :with => "Lucy Loves Pop (columnizer)" + now)
+      fill_in('pop_name', :with => 'Lucy Loves Pop (columnizer) ' + now)
       sleep 1
       click_on('Options')
       sleep 2
@@ -38,8 +45,8 @@ describe "Modify content in existing published Columnizer Pop", :js => true  do
       ## check published pop for content
       visit('http://lovelucy.populrstaging.com/lucy-loves-pop')
       sleep 8
-      page.should have_content("Live Music Every Day")
-      save_and_open_page
+      expect(page).to have_title 'Lucy Loves Pop (columnizer) ' + now
+      # save_and_open_page
     end
   end
 end

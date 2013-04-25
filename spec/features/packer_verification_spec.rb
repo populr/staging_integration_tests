@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Modify content in existing published Columnizer Pop", :js => true  do
+describe "Visual verfication of assets in a published Columnizer Pop", :js => true  do
 
   context "when viewing a published columnizer pop, the cache must be busted. In order to confirm this," do
     it "it should have a new pop title with the current date and update text in at least one of the assets" do
@@ -11,7 +11,7 @@ describe "Modify content in existing published Columnizer Pop", :js => true  do
       fill_in('user_email', :with => USER_EMAIL)
       sleep 1
       fill_in('user_password', :with => USER_PASSWORD)
-      sleep 1
+      sleep 3
       click_button('Login')
       sleep 1
       click_on('Close')
@@ -27,17 +27,15 @@ describe "Modify content in existing published Columnizer Pop", :js => true  do
 
       now = DateTime.now.in_time_zone.to_s
 
-      ## revised text in iframe
-      page.driver.browser.switch_to.frame 'pop-frame'
-      find('.documents-content').click
-      sleep 1
-      page.execute_script("$ ('.documents-content').html('Food Critic Reviews Encouraged. #{now}')" )
-      sleep 2
+      ## add new asset to pop
+      # click_on('Add Content')
+      # sleep 1
+      # find('.add-embed').click
+      # click_on("I'm Done")
+      # sleep 1
 
-      page.driver.browser.switch_to.window(page.driver.browser.window_handles.last)
-      find('body').click #forces autosave of changed text
       click_on('Options')
-      fill_in('pop_name', :with => "Lucy Loves Nashville Life (packer)" + now)
+      fill_in('pop_name', :with => "Nashville Life (packer)" + now)
       sleep 1
       click_on('Options')
       sleep 2
@@ -47,8 +45,8 @@ describe "Modify content in existing published Columnizer Pop", :js => true  do
       ## check published pop for content
       visit('http://lovelucy.populrstaging.com/lucy-lovesnashville-life')
       sleep 5
-      page.should have_content("Live Music Every Day")
-      save_and_open_page
+      expect(page).to have_title 'Nashville Life (packer) ' + now
+      # save_and_open_page
     end
   end
 end
