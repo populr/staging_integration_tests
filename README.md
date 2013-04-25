@@ -9,7 +9,6 @@ GETTING STARTED
 2. In a terminal window, navigate to the repository folder
 3. To run the columnizer test, paste => rspec spec/features/columnizer_verfication_spec.rb
 4. To run the packer test, paste => rspec spec/features/packer_verification_spec.rb
-Enjoy!
 
 
 TEST ADJUSTMENTS & NOTES
