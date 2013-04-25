@@ -7,7 +7,7 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
       ## login user
       visit sign_in_path
       click_on('Close')
-      sleep 2
+      sleep 2 #use sleep to adjust wait time inbetween steps, i.e. sleep 60 is on minute
       fill_in('user_email', :with => USER_EMAIL)
       sleep 1
       fill_in('user_password', :with => USER_PASSWORD)
@@ -16,6 +16,7 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
       sleep 1
       click_on('Close')
 
+      # pop index page
       current_path.should == pops_path
       sleep 1
 
@@ -42,11 +43,53 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
       click_button('Publish Changes')
       sleep 5 #wait for Editor to close before proceeding
 
-      ## check published pop for content
+
+
+      ## add password to pop
+      find('button span.caret').click
+      sleep 2
+      click_on('Publish + Share')
+      sleep 2
+      click_on('Close')
+      find('a#pop-lock').click
+      within('div.modal') do
+        page.execute_script("$ ('input.publish_url_bar_password_field').val('#{USER_PASSWORD}')" )
+        sleep 2
+        click_on('Save')
+      end
+      visit pops_path
+
+      ## check password protected published pop
+      visit('https://lovelucy.populrstaging.com/lucy-lovesnashville-life')
+      sleep 2
+      fill_in('Password', :with => 'password2013')
+      sleep 3
+      click_on('Go')
+      sleep 7
+      expect(page).to have_title 'Nashville Life (packer) ' + now
+
+      ## remove password from pop
+      visit('https://editor-51797855851707a78c00001a.populrstaging.com/____editor____/51797855851707a78c00001a#/')
+      find('button span.caret').click
+      sleep 2
+      click_on('Publish + Share')
+      sleep 2
+      click_on('Close')
+      find('a#pop-lock').click
+      within('div.modal') do
+        page.execute_script("$ ('input.publish_url_bar_password_field').val('')" )
+        sleep 3
+        click_on('Save')
+      end
+      sleep 5 #* wait for system to save password
+
+
+
+      ## check published pop for updated title
       visit('http://lovelucy.populrstaging.com/lucy-lovesnashville-life')
       sleep 5
       expect(page).to have_title 'Nashville Life (packer) ' + now
-      # save_and_open_page
+      # save_and_open_page  ## uncomment this to keep the page open after the test runs
     end
   end
 end

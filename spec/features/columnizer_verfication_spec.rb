@@ -7,7 +7,7 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
       ## login user
       visit sign_in_path
       click_on('Close')
-      sleep 2
+      sleep 2 #use sleep to adjust wait time inbetween steps, i.e. sleep 60 is on minute
       fill_in('user_email', :with => USER_EMAIL)
       sleep 1
       fill_in('user_password', :with => USER_PASSWORD)
@@ -34,6 +34,7 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
 
       now = DateTime.now.in_time_zone.to_s
 
+      ## update pop title with 'now'
       click_on('Options')
       fill_in('pop_name', :with => 'Lucy Loves Pop (columnizer) ' + now)
       sleep 1
@@ -42,7 +43,50 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
       click_button('Publish Changes')
       sleep 5 #wait for Editor to close before proceeding
 
-      ## check published pop for content
+
+
+      ## add password to pop
+      find('button span.caret').click
+      sleep 2
+      click_on('Publish + Share')
+      sleep 2
+      click_on('Close')
+      find('a#pop-lock').click
+      within('div.modal') do
+        page.execute_script("$ ('input.publish_url_bar_password_field').val('#{USER_PASSWORD}')" )
+        sleep 2
+        click_on('Save')
+      end
+      visit pops_path
+
+      ## check password protected published pop
+      visit('https://lovelucy.populrstaging.com/lucy-loves-pop')
+      sleep 2
+      fill_in('Password', :with => 'password2013')
+      sleep 3
+      click_on('Go')
+      sleep 7
+      expect(page).to have_title 'Lucy Loves Pop (columnizer) ' + now
+
+      ## remove password from pop
+      visit('https://editor-5179704f85170728c6000004.populrstaging.com/____editor____/5179704f85170728c6000004#/')
+      find('button span.caret').click
+      sleep 2
+      click_on('Publish + Share')
+      sleep 2
+      click_on('Close')
+      find('a#pop-lock').click
+      within('div.modal') do
+        page.execute_script("$ ('input.publish_url_bar_password_field').val('')" )
+        sleep 3
+        click_on('Save')
+      end
+      sleep 5 #* wait for system to save password
+
+
+
+
+      ## check published pop (no password) for updated title
       visit('http://lovelucy.populrstaging.com/lucy-loves-pop')
       sleep 8
       expect(page).to have_title 'Lucy Loves Pop (columnizer) ' + now
@@ -50,8 +94,3 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
     end
   end
 end
-
-
-
-  # stacks is packer
-  # dean is columnizer √ß
