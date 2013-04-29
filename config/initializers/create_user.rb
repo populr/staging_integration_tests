@@ -1,3 +1,3 @@
-USER_EMAIL = 'lovelucy@email.com'
-USER_PASSWORD = 'password2013'
-USER_DOMAIN_NAME = 'lovelucy'
+USER_EMAIL = 'john+stagingintegration@populr.me'
+USER_PASSWORD = 'p0pp0p#1'
+USER_DOMAIN_NAME = 'john-staging-integration'
