@@ -21,7 +21,7 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
       sleep 1
 
       ## enter editor
-      visit('https://editor-51797855851707a78c00001a.populrstaging.com/____editor____/51797855851707a78c00001a#/')
+      visit('https://editor-517ef20354b709a75c000007.populrstaging.com/____editor____/517ef20354b709a75c000007#/')
       sleep 5
       page.should have_content('Options')
       page.should have_content('Publish')
@@ -60,7 +60,7 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
       visit pops_path
 
       ## check password protected published pop
-      visit('https://lovelucy.populrstaging.com/lucy-lovesnashville-life')
+      visit('https://staging-integration-testing.populrstaging.com/qa-template-pop-packer')
       sleep 2
       fill_in('Password', :with => 'password2013')
       sleep 3
@@ -69,7 +69,7 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
       expect(page).to have_title 'Nashville Life (packer) ' + now
 
       ## remove password from pop
-      visit('https://editor-51797855851707a78c00001a.populrstaging.com/____editor____/51797855851707a78c00001a#/')
+      visit('https://editor-517ef20354b709a75c000007.populrstaging.com/____editor____/517ef20354b709a75c000007#/')
       find('button span.caret').click
       sleep 2
       click_on('Publish + Share')
@@ -86,7 +86,7 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
 
 
       ## check published pop for updated title
-      visit('http://lovelucy.populrstaging.com/lucy-lovesnashville-life')
+      visit('http://staging-integration-testing.populrstaging.com/qa-template-pop-packer')
       sleep 5
       expect(page).to have_title 'Nashville Life (packer) ' + now
       # save_and_open_page  ## uncomment this to keep the page open after the test runs

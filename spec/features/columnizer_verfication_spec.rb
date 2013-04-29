@@ -20,7 +20,7 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
       sleep 1
 
       ## enter editor
-      visit('https://editor-5179704f85170728c6000004.populrstaging.com/____editor____/5179704f85170728c6000004#/')
+      visit('https://editor-517eebb554b7091a8700000e.populrstaging.com/____editor____/517eebb554b7091a8700000e#/')
       sleep 5
       page.should have_content('Options')
       page.should have_content('Publish')
@@ -36,7 +36,7 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
 
       ## update pop title with 'now'
       click_on('Options')
-      fill_in('pop_name', :with => 'Lucy Loves Pop (columnizer) ' + now)
+      fill_in('pop_name', :with => 'QA template pop - columnizer' + now)
       sleep 1
       click_on('Options')
       sleep 2
@@ -60,16 +60,16 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
       visit pops_path
 
       ## check password protected published pop
-      visit('https://lovelucy.populrstaging.com/lucy-loves-pop')
+      visit('https://staging-integration-testing.populr.me/qa-template-pop-columnizer')
       sleep 2
       fill_in('Password', :with => 'password2013')
       sleep 3
       click_on('Go')
       sleep 7
-      expect(page).to have_title 'Lucy Loves Pop (columnizer) ' + now
+      expect(page).to have_title 'QA template pop - columnizer' + now
 
       ## remove password from pop
-      visit('https://editor-5179704f85170728c6000004.populrstaging.com/____editor____/5179704f85170728c6000004#/')
+      visit('https://editor-517eebb554b7091a8700000e.populrstaging.com/____editor____/517eebb554b7091a8700000e#/')
       find('button span.caret').click
       sleep 2
       click_on('Publish + Share')
@@ -87,9 +87,9 @@ describe "Visual verfication of assets in a published Columnizer Pop", :js => tr
 
 
       ## check published pop (no password) for updated title
-      visit('http://lovelucy.populrstaging.com/lucy-loves-pop')
+      visit('http://staging-integration-testing.populrstaging.com/qa-template-pop-columnizer')
       sleep 8
-      expect(page).to have_title 'Lucy Loves Pop (columnizer) ' + now
+      expect(page).to have_title 'QA template pop - columnizer' + now
       # save_and_open_page
     end
   end
